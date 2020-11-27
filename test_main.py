@@ -36,17 +36,17 @@ class Test(unittest.TestCase):
             qtd_litros_falta = qtd_litros - qtd_latas_misto * 18
             qtd_galao_misto = math.ceil(qtd_litros_falta * 1 / galao)
             valor_galao_misto = qtd_galao_misto * custo_galao
-            mock_print.called_with(
+            mock_print.assert_called_with(
                 f'O valor gasto comprando apenas latas é de {valor_lata}.')
-            mock_print.called_with(f'Serão necessárias {qtd_lata} latas.')
-            mock_print.called_with(
+            mock_print.assert_called_with(f'Serão necessárias {qtd_lata} latas.')
+            mock_print.assert_called_with(
                 f'O valor gasto comprando apenas galões é de {valor_galao}.')
-            mock_print.called_with(f'Serão necessários {qtd_galao} galões.')
-            mock_print.called_with(
+            mock_print.assert_called_with(f'Serão necessários {qtd_galao} galões.')
+            mock_print.assert_called_with(
                 f'O valor gasto comprando de forma que gere a menor quantidade\
                      de desperdício é de {valor_galao_misto + valor_latas_misto}.'
             )
-            mock_print.called_with(
+            mock_print.assert_called_with(
                 f'Serão necessárias {qtd_latas_misto} latas e {qtd_galao_misto} galões.'
             )
 
