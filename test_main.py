@@ -1,54 +1,158 @@
 """Esse módulo é utilizado para realizar testes automáticos dos exercícios."""
 
 import unittest
-import random
-import math
-from unittest.mock import patch
+from unittest.mock import call, patch
 import main
 
 
 class Test(unittest.TestCase):
     """Classe para agregar os métodos que serão utilizados para testar."""
-    def test_main(self):
-        """Função que testa se a saída do programa corresponde ao que foi especificado."""
+    def test_0(self):
+        """Função que testa com area 0."""
         # Lista de valores que serão retornados pela função input.
-        area = float(random.randint(1, 1000))
-        input_returns = [area]
+        input_returns = ['0']
         with patch('builtins.input',
                    side_effect=input_returns) as mock_input, patch(
                        'builtins.print') as mock_print:
             main.main()
             # O teste se a saída corresponde ao especificado fica aqui.
             assert mock_input.call_count == 1
-            cobertura = 1 / 6  # l/m^2
-            lata = 18  # l / unidade
-            custo_lata = 80  # R$ / unidade
-            galao = 3.6  # l / unidade
-            custo_galao = 25  # R$ / unidade
-            folga = 1.1
-            qtd_litros = area * cobertura * folga
-            qtd_lata = math.ceil(qtd_litros * 1 / lata)
-            valor_lata = qtd_lata * custo_lata
-            qtd_galao = math.ceil(qtd_litros * 1 / galao)
-            valor_galao = qtd_galao * custo_galao
-            qtd_latas_misto = math.floor(qtd_litros * 1 / lata)
-            valor_latas_misto = qtd_latas_misto * custo_lata
-            qtd_litros_falta = qtd_litros - qtd_latas_misto * 18
-            qtd_galao_misto = math.ceil(qtd_litros_falta * 1 / galao)
-            valor_galao_misto = qtd_galao_misto * custo_galao
-            mock_print.assert_called_with(
-                f'O valor gasto comprando apenas latas é de {valor_lata}.')
-            mock_print.assert_called_with(f'Serão necessárias {qtd_lata} latas.')
-            mock_print.assert_called_with(
-                f'O valor gasto comprando apenas galões é de {valor_galao}.')
-            mock_print.assert_called_with(f'Serão necessários {qtd_galao} galões.')
-            mock_print.assert_called_with(
-                f'O valor gasto comprando de forma que gere a menor quantidade\
-                     de desperdício é de {valor_galao_misto + valor_latas_misto}.'
-            )
-            mock_print.assert_called_with(
-                f'Serão necessárias {qtd_latas_misto} latas e {qtd_galao_misto} galões.'
-            )
+            valores = [
+                'O valor gasto comprando apenas latas é de R$ 0.00.',
+                'Serão necessárias 0 latas.',
+                'O valor gasto comprando apenas galões é de R$ 0.00.',
+                'Serão necessários 0 galões.',
+                'O valor gasto comprando de forma que gere a menor quantidade de desperdício é de R$ 0.00.',
+                'Serão necessárias 0 latas e 0 galões.'
+            ]
+            calls = list(map(call, valores))
+            mock_print.assert_has_calls(calls)
+
+    def test_5(self):
+        """Função que testa com area 5."""
+        # Lista de valores que serão retornados pela função input.
+        input_returns = ['5']
+        with patch('builtins.input',
+                   side_effect=input_returns) as mock_input, patch(
+                       'builtins.print') as mock_print:
+            main.main()
+            # O teste se a saída corresponde ao especificado fica aqui.
+            assert mock_input.call_count == 1
+            valores = [
+                'O valor gasto comprando apenas latas é de R$ 80.00.',
+                'Serão necessárias 1 latas.',
+                'O valor gasto comprando apenas galões é de R$ 25.00.',
+                'Serão necessários 1 galões.',
+                'O valor gasto comprando de forma que gere a menor quantidade de desperdício é de R$ 25.00.',
+                'Serão necessárias 0 latas e 1 galões.'
+            ]
+            calls = list(map(call, valores))
+            mock_print.assert_has_calls(calls)
+
+    def test_20(self):
+        """Função que testa com area 20."""
+        # Lista de valores que serão retornados pela função input.
+        input_returns = ['20']
+        with patch('builtins.input',
+                   side_effect=input_returns) as mock_input, patch(
+                       'builtins.print') as mock_print:
+            main.main()
+            # O teste se a saída corresponde ao especificado fica aqui.
+            assert mock_input.call_count == 1
+            valores = [
+                'O valor gasto comprando apenas latas é de R$ 80.00.',
+                'Serão necessárias 1 latas.',
+                'O valor gasto comprando apenas galões é de R$ 50.00.',
+                'Serão necessários 2 galões.',
+                'O valor gasto comprando de forma que gere a menor quantidade de desperdício é de R$ 50.00.',
+                'Serão necessárias 0 latas e 2 galões.'
+            ]
+            calls = list(map(call, valores))
+            mock_print.assert_has_calls(calls)
+
+    def test_50(self):
+        """Função que testa com area 50."""
+        # Lista de valores que serão retornados pela função input.
+        input_returns = ['50']
+        with patch('builtins.input',
+                   side_effect=input_returns) as mock_input, patch(
+                       'builtins.print') as mock_print:
+            main.main()
+            # O teste se a saída corresponde ao especificado fica aqui.
+            assert mock_input.call_count == 1
+            valores = [
+                'O valor gasto comprando apenas latas é de R$ 80.00.',
+                'Serão necessárias 1 latas.',
+                'O valor gasto comprando apenas galões é de R$ 75.00.',
+                'Serão necessários 3 galões.',
+                'O valor gasto comprando de forma que gere a menor quantidade de desperdício é de R$ 75.00.',
+                'Serão necessárias 0 latas e 3 galões.'
+            ]
+            calls = list(map(call, valores))
+            mock_print.assert_has_calls(calls)
+
+    def test_75(self):
+        """Função que testa com area 75."""
+        # Lista de valores que serão retornados pela função input.
+        input_returns = ['75']
+        with patch('builtins.input',
+                   side_effect=input_returns) as mock_input, patch(
+                       'builtins.print') as mock_print:
+            main.main()
+            # O teste se a saída corresponde ao especificado fica aqui.
+            assert mock_input.call_count == 1
+            valores = [
+                'O valor gasto comprando apenas latas é de R$ 80.00.',
+                'Serão necessárias 1 latas.',
+                'O valor gasto comprando apenas galões é de R$ 100.00.',
+                'Serão necessários 4 galões.',
+                'O valor gasto comprando de forma que gere a menor quantidade de desperdício é de R$ 100.00.',
+                'Serão necessárias 0 latas e 4 galões.'
+            ]
+            calls = list(map(call, valores))
+            mock_print.assert_has_calls(calls)
+
+    def test_100(self):
+        """Função que testa com area 100."""
+        # Lista de valores que serão retornados pela função input.
+        input_returns = ['100']
+        with patch('builtins.input',
+                   side_effect=input_returns) as mock_input, patch(
+                       'builtins.print') as mock_print:
+            main.main()
+            # O teste se a saída corresponde ao especificado fica aqui.
+            assert mock_input.call_count == 1
+            valores = [
+                'O valor gasto comprando apenas latas é de R$ 160.00.',
+                'Serão necessárias 2 latas.',
+                'O valor gasto comprando apenas galões é de R$ 150.00.',
+                'Serão necessários 6 galões.',
+                'O valor gasto comprando de forma que gere a menor quantidade de desperdício é de R$ 105.00.',
+                'Serão necessárias 1 latas e 1 galões.'
+            ]
+            calls = list(map(call, valores))
+            mock_print.assert_has_calls(calls)
+
+    def test_150(self):
+        """Função que testa com area 150."""
+        # Lista de valores que serão retornados pela função input.
+        input_returns = ['150']
+        with patch('builtins.input',
+                   side_effect=input_returns) as mock_input, patch(
+                       'builtins.print') as mock_print:
+            main.main()
+            # O teste se a saída corresponde ao especificado fica aqui.
+            assert mock_input.call_count == 1
+            valores = [
+                'O valor gasto comprando apenas latas é de R$ 160.00.',
+                'Serão necessárias 2 latas.',
+                'O valor gasto comprando apenas galões é de R$ 200.00.',
+                'Serão necessários 8 galões.',
+                'O valor gasto comprando de forma que gere a menor quantidade de desperdício é de R$ 155.00.',
+                'Serão necessárias 1 latas e 3 galões.'
+            ]
+            calls = list(map(call, valores))
+            mock_print.assert_has_calls(calls)
 
 
 if __name__ == '__main__':
